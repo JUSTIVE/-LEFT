@@ -1,0 +1,13 @@
+{
+  "name": "-LEFT",
+  "packageManager": "yarn@3.1.1",
+  "installConfig": {
+    "pnp": true
+  },
+  "devDependencies": {
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "@types/jest": "^27.4.0"
+  }
+}
