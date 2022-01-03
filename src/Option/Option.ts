@@ -9,12 +9,23 @@ export type None = undefined | null
 
 export type Option<A> = Some<A>
 
-export function of<A>(value: A): Option<A> {
+function of<A>(value: A): Option<A> {
   return isNone(value) ? None : value
 }
 
-export function isNone(value: any): value is None {
+function isNone(value: any): value is None {
   return value === undefined || value === null
 }
 
-export const None = undefined
+function isSome<A>(value:any):value is Some<A>{
+  return !isNone(value)
+}
+
+const None = undefined
+
+export const Option = {
+  None:None,
+  of:of,
+  isNone:isNone,
+  isSome:isSome
+}
