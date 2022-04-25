@@ -24,8 +24,8 @@ function isSome<A>(value:any):value is Some<A>{
 const None = undefined
 
 export const Option = {
-  None:None,
-  of:of,
-  isNone:isNone,
-  isSome:isSome
+  None,
+  of,
+  isNone,
+  isSome
 }
