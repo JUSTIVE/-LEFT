@@ -3,14 +3,17 @@ export type Some<A> =
     ? never
     : A extends undefined
       ? never
-      : A
+      : {
+        _: 'Some',
+        value:A
+      }
 
 export type None = undefined | null
 
 export type Option<A> = Some<A>
 
 function of<A>(value: A): Option<A> {
-  return isNone(value) ? None : value
+  return isNone(value) ? None : { _: 'Some', value }
 }
 
 function isNone(value: any): value is None {
@@ -23,11 +26,27 @@ function isSome<A>(value:any):value is Some<A>{
 
 const None = undefined
 
+function map<A,B>(option: Option<A>, f: (a:A) => B): Option<B> {
+  if (isSome(option)) {
+    return of(f(option.value))
+  }
+  return option
+}
+
+function flatMap<A,B>(option: Option<A>, f: (a:A) => Option<B>): Option<B> {
+  if (isSome(option)) {
+    return f(option.value)
+  }
+  return option
+}
+
 export const Option = {
   None,
   of,
   isNone,
-  isSome
+  isSome,
+  map,
+  flatMap
 }
 
 // type UmaErrorType = "ValidationError"
